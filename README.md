@@ -1,4 +1,4 @@
-# gachon-books
+# child-play-facility-information
 
 - 2019년 2학기 모바일웹 - 반응형 웹 구현 프로젝트
 - 어린이 놀이시설 정보 제공 사이트
