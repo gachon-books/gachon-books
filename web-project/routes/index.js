@@ -22,12 +22,12 @@ request.get({ url: bestApiUrl }, function(err, res, body) {
     try {
       return arr.prevObject[i].children[17].children[0].data;
     } catch(error) {
-      console.log('도로명 주소가 등록되지 않아 지번 주소로 대체');
+      console.log(`'${arr.prevObject[i].children[7].children[0].data}'의 도로명 주소가 등록되지 않아 지번 주소로 대체`);
       try {
         return arr.prevObject[i].children[15].children[0].data;
       } catch(error) {
-        console.log('지번 주소도 등록되지 않아 공백으로 대체');
-        return '';
+        console.log(`'${arr.prevObject[i].children[7].children[0].data}'의 지번 주소가 등록되지 않아 텍스트로 대체`);
+        return '등록된 주소가 없음';
       }
     }
   };

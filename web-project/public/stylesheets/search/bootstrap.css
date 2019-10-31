@@ -1,0 +1,287 @@
+#search .clearfix {
+  *zoom: 1;
+}
+
+#search .clearfix:before,
+#search .clearfix:after {
+  display: table;
+  line-height: 0;
+  content: "";
+}
+
+#search .clearfix:after {
+  clear: both;
+}
+
+#search section {
+  display: block;
+}
+
+#search a:focus {
+  outline: thin dotted #333;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+
+#search a:hover,
+#search a:active {
+  outline: 0;
+}
+
+#search img {
+  width: auto\9;
+  height: auto;
+  max-width: 100%;
+  vertical-align: middle;
+  border: 0;
+  -ms-interpolation-mode: bicubic;
+}
+
+@media print {
+  #search * {
+    color: #000 !important;
+    text-shadow: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+  #search a,
+  #search a:visited {
+    text-decoration: underline;
+  }
+  #search a[href]:after {
+    content: " (" attr(href) ")";
+  }
+  #search a[href^="javascript:"]:after,
+  #search a[href^="#"]:after {
+    content: "";
+  }
+  #search img {
+    page-break-inside: avoid;
+  }
+  #search img {
+    max-width: 100% !important;
+  }
+  @page  {
+    margin: 0.5cm;
+  }
+  #search p,
+  #search h2,
+  #search h3 {
+    orphans: 3;
+    widows: 3;
+  }
+  #search h2,
+  #search h3 {
+    page-break-after: avoid;
+  }
+}
+
+#search a {
+  color: #0088cc;
+  text-decoration: none;
+}
+
+#search a:hover,
+#search a:focus {
+  color: #005580;
+  text-decoration: underline;
+}
+
+#search .row {
+  margin-left: -20px;
+  *zoom: 1;
+}
+
+#search .row:before,
+#search .row:after {
+  display: table;
+  line-height: 0;
+  content: "";
+}
+
+#search .row:after {
+  clear: both;
+}
+
+#search [class*="span"] {
+  float: left;
+  min-height: 1px;
+  margin-left: 20px;
+}
+
+#search .container {
+  width: 940px;
+}
+
+#search .span12 {
+  width: 940px;
+}
+
+#search [class*="span"].hide,
+.row-fluid [class*="span"].hide {
+  display: none;
+}
+
+#search [class*="span"].pull-right,
+.row-fluid [class*="span"].pull-right {
+  float: right;
+}
+
+#search .container {
+  margin-right: auto;
+  margin-left: auto;
+  *zoom: 1;
+}
+
+#search .container:before,
+#search .container:after {
+  display: table;
+  line-height: 0;
+  content: "";
+}
+
+#search .container:after {
+  clear: both;
+}
+
+#search .container-fluid {
+  padding-right: 20px;
+  padding-left: 20px;
+  *zoom: 1;
+}
+
+#search .container-fluid:before,
+#search .container-fluid:after {
+  display: table;
+  line-height: 0;
+  content: "";
+}
+
+#search .container-fluid:after {
+  clear: both;
+}
+
+#search .text-left {
+  text-align: left;
+}
+
+#search .text-right {
+  text-align: right;
+}
+
+#search .text-center {
+  text-align: center;
+}
+
+#search h1,
+#search h2,
+#search h3,
+#search h4,
+#search h5,
+#search h6 {
+  margin: 10px 0;
+  font-family: inherit;
+  font-weight: bold;
+  line-height: 20px;
+  color: inherit;
+  text-rendering: optimizelegibility;
+}
+
+#search h1 small,
+#search h2 small,
+#search h3 small,
+#search h4 small,
+#search h5 small,
+#search h6 small {
+  font-weight: normal;
+  line-height: 1;
+  color: #999999;
+}
+
+#search h1,
+#search h2,
+#search h3 {
+  line-height: 40px;
+}
+
+#search h1 {
+  font-size: 38.5px;
+}
+
+#search h2 {
+  font-size: 31.5px;
+}
+
+#search h3 {
+  font-size: 24.5px;
+}
+
+#search h4 {
+  font-size: 17.5px;
+}
+
+#search h5 {
+  font-size: 14px;
+}
+
+#search h6 {
+  font-size: 11.9px;
+}
+
+#search h1 small {
+  font-size: 24.5px;
+}
+
+#search h2 small {
+  font-size: 17.5px;
+}
+
+#search h3 small {
+  font-size: 14px;
+}
+
+#search h4 small {
+  font-size: 14px;
+}
+
+#search ul,
+#search ol {
+  padding: 0;
+  margin: 0 0 10px 25px;
+}
+
+#search ul ul,
+#search ul ol,
+#search ol ol,
+#search ol ul {
+  margin-bottom: 0;
+}
+
+#search li {
+  line-height: 20px;
+}
+
+#search ul.unstyled,
+#search ol.unstyled {
+  margin-left: 0;
+  list-style: none;
+}
+
+#search ul.inline,
+#search ol.inline {
+  margin-left: 0;
+  list-style: none;
+}
+
+#search ul.inline > li,
+#search ol.inline > li {
+  display: inline-block;
+  *display: inline;
+  padding-right: 5px;
+  padding-left: 5px;
+  *zoom: 1;
+}
+
+#search .icon-plus {
+  background-position: -408px -96px;
+}
