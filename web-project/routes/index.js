@@ -1,3 +1,5 @@
+const fs = require('fs');
+const ejs = require('ejs');
 const express = require('express');
 const request = require('request');
 const cheerio = require('cheerio');
@@ -50,10 +52,13 @@ request.get({ url: bestApiUrl }, function(err, res, body) {
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', {
+  let htmlstream = fs.readFileSync(__dirname + '/../views/index.ejs', 'utf8');
+  res.writeHead(200, {'Content-Type':'text/html; charset=utf8'});
+
+  res.end(ejs.render(htmlstream, {
     title: '어린이 놀이시설 정보',
     bestFacilities : bestFacilities  // 우수 어린이 놀이시설 리스트
-  });
+  }));
 });
 
 module.exports = router;
