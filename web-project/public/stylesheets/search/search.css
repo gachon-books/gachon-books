@@ -102,6 +102,7 @@ section#search.inner {
 #search .portfolio-item .portfolio-image img {
 	width: 100%;
 	height: auto;
+	border: 1px solid red;
 }
 #search .portfolio .portfolio-overlay {
 	width: 100%;
