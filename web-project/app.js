@@ -1,4 +1,5 @@
 var fs = require('fs');
+var ejs = require('ejs');
 var path = require('path');
 var logger = require('morgan');
 var express = require('express');
