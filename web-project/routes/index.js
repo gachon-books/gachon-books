@@ -56,13 +56,14 @@ router.get('/', function(req, res, next) {
   htmlstream += fs.readFileSync(__dirname + '/../views/navbar.ejs', 'utf8');
   htmlstream += fs.readFileSync(__dirname + '/../views/bestfacility.ejs', 'utf8');
   htmlstream += fs.readFileSync(__dirname + '/../views/search.ejs', 'utf8');
+  htmlstream += fs.readFileSync(__dirname + '/../views/searchmodal.ejs', 'utf8');
   htmlstream += fs.readFileSync(__dirname + '/../views/teamcontact.ejs', 'utf8');
   htmlstream += fs.readFileSync(__dirname + '/../views/footer.ejs', 'utf8');
   res.writeHead(200, {'Content-Type':'text/html; charset=utf8'});
 
   res.end(ejs.render(htmlstream, {
     title: '어린이 놀이시설 정보',
-    bestFacilities : bestFacilities  // 우수 어린이 놀이시설 리스트
+    bestFacilities : bestFacilities,  // 우수 어린이 놀이시설 리스트
   }));
 });
 
