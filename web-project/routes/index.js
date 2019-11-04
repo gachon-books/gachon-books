@@ -5,12 +5,10 @@ const request = require('request');
 const cheerio = require('cheerio');
 const router = express.Router();
 
-let apiKey = 'apiKey'; // 경기데이터드림에서 발급된 apiKey
-
-// 우수 어린이 놀이시설 정보 가져오기
+// 우수 놀이시설 정보 가져오기
 let bestFacilities = [];
-let bestApiUrl = 'https://openapi.gg.go.kr/ExcellenceChildPlayFaciliti'
-                  +`?KEY=${apiKey}`;
+let apiKey = 'apiKey'; // 경기데이터드림에서 발급된 apiKey
+let bestApiUrl = `https://openapi.gg.go.kr/ExcellenceChildPlayFaciliti?KEY=${apiKey}`;
 
 request.get({ url: bestApiUrl }, function(err, res, body) {
   let $ = cheerio.load(body);
@@ -47,7 +45,6 @@ request.get({ url: bestApiUrl }, function(err, res, body) {
     bestFacilities.push(facility);
     // console.log(facility);
   }
-  
 });
 
 /* GET home page. */

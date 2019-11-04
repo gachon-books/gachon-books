@@ -1,5 +1,4 @@
 jQuery(document).ready(function($) {
-
 	$('#search .scrollup').click(function(){
 		$("#search html, #search body").animate({ scrollTop: 0 }, 1000);
 		return false;
@@ -103,6 +102,3 @@ jQuery(document).ready(function($) {
 		return false;
 	});
 });
-	
-	
-
