@@ -3,6 +3,7 @@ var ejs = require('ejs');
 var path = require('path');
 var logger = require('morgan');
 var express = require('express');
+var session = require('express-session');
 var createError = require('http-errors');
 var cookieParser = require('cookie-parser');
 var mongoclient = require('mongodb').MongoClient;
@@ -19,12 +20,18 @@ app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist'));
 app.use('/bootstrap/js', express.static(__dirname + '/node_modules/bootstrap/dist/js'));
 app.use('/bootstrap/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
+app.use(session({
+  key: 'sid',
+  secret: 'secret key',
+  resave: false,
+  saveUninitialized: true
+}));
 
 app.use('/', indexRouter);
 app.use('/login', loginRouter);
