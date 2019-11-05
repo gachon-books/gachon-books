@@ -79,10 +79,11 @@ section#search.inner {
 	border:0;
 	padding: 0;
 }
+
 #search .portfolio-item .portfolio-image img {
 	width: 100%;
 	height: auto;
-	padding: 35px 35px 10px 10px;
+	padding: 10px 35px 10px 35px;
 }
 
 /* 애니메이션 */

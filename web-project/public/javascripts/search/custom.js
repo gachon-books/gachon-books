@@ -105,7 +105,12 @@ jQuery(document).ready(function($) {
 
 // 시군로고 클릭했을 때 modal에 정보 전달
 jQuery(document).ready(function($) {
+	setTimeout(function() {
+		$('#filter-all').trigger('click');
+	}, 100);
+
 	$('#search .portfolio').click(function() {
-		$('#list-modal-title').text(`${$(this).context.children[0].children[0].alt}의 놀이시설 목록`);
+		let sigun_nm = $(this).context.children[0].children[0].alt;
+		$('#list-modal-title').text(`${sigun_nm}의 놀이시설 목록`);
 	});
 });
