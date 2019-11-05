@@ -7,6 +7,10 @@
 var app = require('../app');
 var debug = require('debug')('web-project:server');
 var http = require('http');
+var mongoclient = require('mongodb').MongoClient;
+var mongoose = require('mongoose');
+mongoose.set('useFindAndModify', true);
+mongoose.set('useCreateIndex', true);
 
 /**
  * Get port from environment and store in Express.
@@ -14,6 +18,55 @@ var http = require('http');
 
 var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
+
+/**
+ * mongodb configuration
+ */
+
+var db;
+var UserSchema;
+var UserModel;
+
+function connectDB() {
+    var databaseUrl = 'mongodb://localhost:27017/local';
+    
+    console.log('데이터베이스에 연결되었습니다.: ' + databaseUrl);
+    mongoose.Promise = global.Promise;
+    mongoose.connect(databaseUrl,{ useUnifiedTopology : true, useNewUrlParser: true });
+    db = mongoose.connection;
+    
+    db.on('error', console.error.bind(console,'mongoose connection error'));
+    db.on('open',function(){
+        console.log('데이터베이스에 연결되었습니다.' + databaseUrl);
+        
+        UserSchema = mongoose.Schema({
+            id: {type:String, required: true, unique: true},
+            name: {type:String, index:'hashed'},
+            password: {type:String, rquired: true},
+            age: {type:Number, 'default':-1},
+            created_at: {type: Date, index:{unique: false},'default': Date.now},
+            updated_at: {type: Date, index: {unique: false}, 'default':Date.now}
+        });
+
+        UserSchema.static('findById', function(id, callback){
+            return this.find({id:id}, callback);
+        });
+        
+        UserSchema.static('findAll', function(callback) {
+            return this.find({},callback);
+        });
+        console.log('UserSchema 정의함');
+        
+        UserModel = mongoose.model("users2", UserSchema);
+        console.log('UserModel 정의함');
+    });
+    
+    db.on('disconnected', function(){
+        console.log('연결이 끊어졌습니다. 5초 후 다시 연결합니다.');
+        setInterval(connectDB, 5000);
+    });
+}
+
 
 /**
  * Create HTTP server.
@@ -25,7 +78,10 @@ var server = http.createServer(app);
  * Listen on provided port, on all network interfaces.
  */
 
-server.listen(port);
+server.listen(port, function() {
+  // connect mongodb
+  connectDB();
+});
 server.on('error', onError);
 server.on('listening', onListening);
 
