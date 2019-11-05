@@ -16,7 +16,7 @@ request.get({ url: bestApiUrl }, function(err, res, body) {
 
   /*
     도로명 주소를 우선적으로 가져오되, 없으면 지번 주소를 가져오고
-    그마저도 없으면 공백으로 대체
+    그마저도 없으면 대체 텍스트 대입
   */
   let getAddr = function(i) {
     try {
@@ -47,10 +47,10 @@ request.get({ url: bestApiUrl }, function(err, res, body) {
   }
 });
 
-/* GET home page. */
 router.get('/', function(req, res, next) {
   let htmlstream = fs.readFileSync(__dirname + '/../views/htmlhead.ejs', 'utf8');
   htmlstream += fs.readFileSync(__dirname + '/../views/navbar.ejs', 'utf8');
+  htmlstream += fs.readFileSync(__dirname + '/../views/userform.ejs', 'utf8');
   htmlstream += fs.readFileSync(__dirname + '/../views/bestfacility.ejs', 'utf8');
   htmlstream += fs.readFileSync(__dirname + '/../views/search.ejs', 'utf8');
   htmlstream += fs.readFileSync(__dirname + '/../views/searchmodal.ejs', 'utf8');
