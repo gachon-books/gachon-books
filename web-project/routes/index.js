@@ -49,6 +49,8 @@ request.get({ url: bestApiUrl }, function(err, res, body) {
 });
 
 router.get('/', function(req, res, next) {
+  let sigun_nm = req.query.sigun_nm;
+
   // html 태그와 head 태그
   let htmlstream = fs.readFileSync(__dirname + '/../views/htmlhead.ejs', 'utf8');
 
@@ -83,6 +85,7 @@ router.get('/', function(req, res, next) {
   res.end(ejs.render(htmlstream, {
     title: '어린이 놀이시설 정보',
     bestFacilities : bestFacilities,  // 우수 어린이 놀이시설 리스트
+    sigun_nm : sigun_nm
   }));
 });
 
