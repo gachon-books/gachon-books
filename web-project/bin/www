@@ -81,6 +81,9 @@ var server = http.createServer(app);
 server.listen(port, function() {
   // connect mongodb
   connectDB();
+
+  console.log('서버가 정상적으로 실행됨');
+  console.log('http://localhost:3000/');
 });
 server.on('error', onError);
 server.on('listening', onListening);

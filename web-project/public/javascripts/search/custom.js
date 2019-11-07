@@ -105,6 +105,7 @@ jQuery(document).ready(function($) {
 
 // 시군로고 클릭했을 때 modal에 정보 전달
 jQuery(document).ready(function($) {
+	
 	setTimeout(function() {
 		$('#filter-all').trigger('click');
 	}, 100);

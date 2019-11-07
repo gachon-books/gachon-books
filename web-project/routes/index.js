@@ -49,13 +49,31 @@ request.get({ url: bestApiUrl }, function(err, res, body) {
 });
 
 router.get('/', function(req, res, next) {
+  // html 태그와 head 태그
   let htmlstream = fs.readFileSync(__dirname + '/../views/htmlhead.ejs', 'utf8');
-  htmlstream += fs.readFileSync(__dirname + '/../views/navbar.ejs', 'utf8');
+
+  // 로그인했을 경우 로그인 전용 navbar 출력하도록 하는 코드(login 대신 logout, mypage 등)
+  // {
+  //   ...
+    htmlstream += fs.readFileSync(__dirname + '/../views/navbar.ejs', 'utf8');
+  // }
+
+  // modal로 구현된 로그인 폼과 회원가입 폼
   htmlstream += fs.readFileSync(__dirname + '/../views/userform.ejs', 'utf8');
+
+  // 우수 놀이시설
   htmlstream += fs.readFileSync(__dirname + '/../views/bestfacility.ejs', 'utf8');
+
+  // 각 지역 놀이시설
   htmlstream += fs.readFileSync(__dirname + '/../views/search.ejs', 'utf8');
+
+  // 시군로고를 클릭했을 경우 list-modal에 놀이시설 목록 출력
   htmlstream += fs.readFileSync(__dirname + '/../views/searchmodal.ejs', 'utf8');
+
+  // 개발자 소개 및 Contact U
   htmlstream += fs.readFileSync(__dirname + '/../views/teamcontact.ejs', 'utf8');
+
+  // footer 및 script 태그
   htmlstream += fs.readFileSync(__dirname + '/../views/footer.ejs', 'utf8');
   res.writeHead(200, {'Content-Type':'text/html; charset=utf8'});
 
