@@ -9,53 +9,108 @@
       </div>
     </div>
 
-    <div class="btn-group btn-group-lg" role="group">
+    <div class="btn-group btn-group-lg" id="btnGroup" role="group">
       <button type="button" id="collapseBtn1" class="btn btn-outline-warning text-dark" data-toggle="collapse" data-target="#collapse1">경기도 북부 <span class="badge badge-warning">8</span></button>
       <button type="button" id="collapseBtn2" class="btn btn-outline-warning text-dark" data-toggle="collapse" data-target="#collapse2">경기도 남부 <span class="badge badge-warning">20</span></button>
       <button type="button" id="collapseBtn3" class="btn btn-outline-warning text-dark" data-toggle="collapse" data-target="#collapse3">군 <span class="badge badge-warning">3</span></button>
+      <button type="button" id="btnUsage" data-toggle="collapse" data-target="collapse-usage" hidden></button>
     </div>
 
-    <div class="card" id="collapse-usage">
-      <div class="card-body">
-        ⬆⬆ 상단 카테고리를 선택해주세요.
-      </div>
+    <div class="alert alert-secondary collapse" id="collapse-usage" role="alert">
+        상단 카테고리를 선택해주세요.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close" id="closeUsage">
+          <span aria-hidden="true">&times;</span>
+        </button>
     </div>
     
     <!-- 경기도 북부 -->
     <div class="row collapse" id="collapse1">
+
       <!-- 고양시 -->
       <div class="col-md-2 col-sm-6 portfolio-item">
         <a class="portfolio-link" href="/?sigun_nm=고양시">
           <div class="portfolio-hover rounded-lg">
             <div class="portfolio-hover-content"><i class="fas fa-plus fa-2x"></i></div>
           </div>
-          <img class="img-fluid border-top border-bottom border-primary rounded-lg" src="img/sigun_logo/고양시.jpg" alt="고양시">
+          <img class="img-fluid border-top border-bottom border-primary rounded-lg" src="img/sigun_logo/고양시.jpg">
         </a>
       </div>
 
       <!-- 구리시 -->
       <div class="col-md-2 col-sm-6 portfolio-item">
-        <a class="portfolio-link" data-toggle="modal" href="#">
+        <a class="portfolio-link" href="/?sigun_nm=구리시">
           <div class="portfolio-hover rounded-lg">
             <div class="portfolio-hover-content"><i class="fas fa-plus fa-2x"></i></div>
           </div>
-          <img class="img-fluid border-top border-bottom border-primary rounded-lg" src="img/sigun_logo/구리시.jpg" alt="구리시">
+          <img class="img-fluid border-top border-bottom border-primary rounded-lg" src="img/sigun_logo/구리시.jpg">
         </a>
       </div>
 
       <!-- 남양주시 -->
       <div class="col-md-2 col-sm-6 portfolio-item">
-        <a class="portfolio-link" data-toggle="modal" href="#">
+        <a class="portfolio-link" href="/?sigun_nm=남양주시">
           <div class="portfolio-hover rounded-lg">
             <div class="portfolio-hover-content"><i class="fas fa-plus fa-2x"></i></div>
           </div>
-          <img class="img-fluid border-top border-bottom border-primary rounded-lg" src="img/sigun_logo/남양주시.jpg" alt="남양주시">
+          <img class="img-fluid border-top border-bottom border-primary rounded-lg" src="img/sigun_logo/남양주시.jpg">
         </a>
       </div>
+
+      <!-- 동두천시 -->
+      <div class="col-md-2 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="/?sigun_nm=동두천시">
+          <div class="portfolio-hover rounded-lg">
+            <div class="portfolio-hover-content"><i class="fas fa-plus fa-2x"></i></div>
+          </div>
+          <img class="img-fluid border-top border-bottom border-primary rounded-lg" src="img/sigun_logo/동두천시.jpg">
+        </a>
+      </div>
+
+      <!-- 양주시 -->
+      <div class="col-md-2 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="/?sigun_nm=양주시">
+          <div class="portfolio-hover rounded-lg">
+            <div class="portfolio-hover-content"><i class="fas fa-plus fa-2x"></i></div>
+          </div>
+          <img class="img-fluid border-top border-bottom border-primary rounded-lg" src="img/sigun_logo/양주시.jpg">
+        </a>
+      </div>
+
+      <!-- 의정부시 -->
+      <div class="col-md-2 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="/?sigun_nm=의정부시">
+          <div class="portfolio-hover rounded-lg">
+            <div class="portfolio-hover-content"><i class="fas fa-plus fa-2x"></i></div>
+          </div>
+          <img class="img-fluid border-top border-bottom border-primary rounded-lg" src="img/sigun_logo/의정부시.jpg">
+        </a>
+      </div>
+
+      <!-- 파주시 -->
+      <div class="col-md-2 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="/?sigun_nm=파주시">
+          <div class="portfolio-hover rounded-lg">
+            <div class="portfolio-hover-content"><i class="fas fa-plus fa-2x"></i></div>
+          </div>
+          <img class="img-fluid border-top border-bottom border-primary rounded-lg" src="img/sigun_logo/파주시.jpg">
+        </a>
+      </div>
+
+      <!-- 포천시 -->
+      <div class="col-md-2 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="/?sigun_nm=포천시">
+          <div class="portfolio-hover rounded-lg">
+            <div class="portfolio-hover-content"><i class="fas fa-plus fa-2x"></i></div>
+          </div>
+          <img class="img-fluid border-top border-bottom border-primary rounded-lg" src="img/sigun_logo/포천시.jpg">
+        </a>
+      </div>
+
     </div>
 
     <!-- 경기도 남부 -->
     <div class="row collapse" id="collapse2">
+
       <!-- 과천시 -->
       <div class="col-md-2 col-sm-6 portfolio-item">
         <a class="portfolio-link" data-toggle="modal" href="#">
@@ -75,20 +130,40 @@
           <img class="img-fluid border-top border-bottom border-success rounded-lg" src="img/sigun_logo/안양시.jpg" alt="안양시">
         </a>
       </div>
+
     </div>
 
     <!-- 군 -->
     <div class="row collapse" id="collapse3">
-      <!-- 양평군 -->
+
+      <!-- 가평군 -->
       <div class="col-md-2 col-sm-6 portfolio-item">
-        <a class="portfolio-link" data-toggle="modal" href="#">
+        <a class="portfolio-link" href="/?sigun_nm=가평군&sigun_cd=41820">
           <div class="portfolio-hover rounded-lg">
             <div class="portfolio-hover-content"><i class="fas fa-plus fa-2x"></i></div>
           </div>
-          <img class="img-fluid border-top border-bottom border-danger rounded-lg" src="img/sigun_logo/양평군.jpg" alt="양평군">
+          <img class="img-fluid border-top border-bottom border-danger rounded-lg" src="img/sigun_logo/가평군.jpg">
         </a>
       </div>
-    </div>
 
-  </div>
-</section>
+      <!-- 양평군 -->
+      <div class="col-md-2 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="/?sigun_nm=양평군&sigun_cd=41830">
+          <div class="portfolio-hover rounded-lg">
+            <div class="portfolio-hover-content"><i class="fas fa-plus fa-2x"></i></div>
+          </div>
+          <img class="img-fluid border-top border-bottom border-danger rounded-lg" src="img/sigun_logo/양평군.jpg">
+        </a>
+      </div>
+
+      <!-- 연천군 -->
+      <div class="col-md-2 col-sm-6 portfolio-item">
+        <a class="portfolio-link" href="/?sigun_nm=연천군&sigun_cd=41800">
+          <div class="portfolio-hover rounded-lg">
+            <div class="portfolio-hover-content"><i class="fas fa-plus fa-2x"></i></div>
+          </div>
+          <img class="img-fluid border-top border-bottom border-danger rounded-lg" src="img/sigun_logo/연천군.jpg">
+        </a>
+      </div>
+
+    </div>
