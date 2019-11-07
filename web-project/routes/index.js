@@ -68,7 +68,10 @@ router.get('/', function(req, res, next) {
   htmlstream += fs.readFileSync(__dirname + '/../views/search.ejs', 'utf8');
 
   // 시군로고를 클릭했을 경우 list-modal에 놀이시설 목록 출력
-  htmlstream += fs.readFileSync(__dirname + '/../views/searchmodal.ejs', 'utf8');
+  // {
+  //   ... req.query ...
+    htmlstream += fs.readFileSync(__dirname + '/../views/searchmodal.ejs', 'utf8');
+  // }
 
   // 개발자 소개 및 Contact U
   htmlstream += fs.readFileSync(__dirname + '/../views/teamcontact.ejs', 'utf8');

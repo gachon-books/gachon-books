@@ -1,9 +1,0 @@
-/* 로그인 폼 CSS */
-
-section#contact {
-    background-image: url("../img/header-bg.jpg");
-    background-repeat: no-repeat;
-    background-attachment: scroll;
-    background-position: center center;
-    background-size: cover;
-}
