@@ -10,11 +10,12 @@ $(function() {
         $('#closeUsage').trigger('click');
     });
 
+    // 시군 로고를 클릭하면 ajax 호출(post, '/')
     $('.portfolio-link').on('click', function() {
         $('.collapse').collapse('hide');
 
         setTimeout(function() {
-            $('#goBtnGroup').trigger('click');
+            $('#btnList').trigger('click');
         }, 500);
 
         let sigun_nm = $(this).attr('name');
@@ -57,8 +58,8 @@ $(function() {
                 result.facilities.forEach(function(item, index) {
                     $('#listScroll').append(
                         `<div class="col-md-6 d-flex listElement">
-                            <p class="mr-auto">${item.test}</p>
-                            <button class="btn btn-sm btn-success pull-right moreBtn">more</button>
+                            <p class="mr-auto my-auto font-weight-bold text-truncate">${item.test}</p>
+                            <button class="btn btn-sm btn-outline-success pull-right moreBtn" data-toggle="modal" data-target="#info-modal">more</button>
                         </div>`
                     );
                 });

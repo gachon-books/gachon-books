@@ -75,8 +75,8 @@ router.get('/', function(req, res, next) {
 router.post('/', function(req, res) {
   let sigun_nm = req.body.sigun_nm;
   let sigun_cd = req.body.sigun_cd;
-  console.log(`시군이름: ${sigun_nm}`);
-  console.log(`시군코드: ${sigun_cd}`);
+  // console.log(`시군이름: ${sigun_nm}`);
+  // console.log(`시군코드: ${sigun_cd}`);
   
   // 공공 DB에서 전체 놀이시설 정보 받아오기
   let facilities = [];

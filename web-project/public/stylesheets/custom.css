@@ -3,6 +3,28 @@
 }
 
 #listScroll {
-    max-height: 500px;
+    padding: 0px 20px 0px 20px;
+    max-height: 550px;
     overflow: auto;
+}
+
+.listElement {
+    padding: 10px 15px 10px 15px;
+}
+
+.page-item .page-link {
+    color: green;
+}
+
+.page-item.active .page-link {
+    background-color: green;
+    color: white;
+}
+
+.modal-backdrop {
+    z-index: 1031;
+}
+
+#info-modal {
+    z-index: 1032;
 }
