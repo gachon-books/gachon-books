@@ -70,22 +70,30 @@ router.get('/', function(req, res, next) {
   
 });
 
-
-
 router.post('/', function(req, res) {
   let sigun_nm = req.body.sigun_nm;
   let sigun_cd = req.body.sigun_cd;
-  // console.log(`시군이름: ${sigun_nm}`);
-  // console.log(`시군코드: ${sigun_cd}`);
+  let currentPage = req.body.currentPage;
+  // console.log(`시군이름: ${sigun_nm}, 시군코드: ${sigun_cd}, 페이지: ${currentPage}`);
   
   // 공공 DB에서 전체 놀이시설 정보 받아오기
+  let totalCount, lastPage;
   let facilities = [];
-  let apiUrl = `https://openapi.gg.go.kr/ChildPlayFacility?KEY=${apiKey}&SIGUN_CD=${sigun_cd}&pSize=20`;
+  let apiUrl = `https://openapi.gg.go.kr/ChildPlayFacility?KEY=${apiKey}&SIGUN_CD=${sigun_cd}&pSize=20&pIndex=${currentPage}`;
   
   request.get({ url: apiUrl }, function(err, res, body) {
     let $ = cheerio.load(body);
     let arr = $('ChildPlayFacility').children('row').children('PLAY_FACLT_NM');
-    facilities = [];
+
+    // 전체 놀이시설 개수 추출 및 마지막 페이지 번호 계산하기
+    totalCount = String($('ChildPlayFacility').children('list_total_count').prevObject.children('list_total_count'));
+    totalCount = parseInt(totalCount.substring(18, totalCount.length-19));
+    lastPage = parseInt(totalCount / 20);
+    if(totalCount % 20 != 0)
+      lastPage++;
+    console.log(`totalCount: ${totalCount}, lastPage: ${lastPage}`);
+
+    facilities = []; // 초기화
     
     // 도로명 주소 혹은 지번 주소 가져오기
     // { ... }
@@ -109,7 +117,10 @@ router.post('/', function(req, res) {
   setTimeout(function() {
     var responseData = {
       'result': 'ok',
-      'facilities': facilities
+      'facilities': facilities,
+      'totalCount': totalCount,
+      'currentPage': currentPage,
+      'lastPage': lastPage
     };
 
     res.json(responseData);

@@ -12,11 +12,12 @@
     padding: 10px 15px 10px 15px;
 }
 
-.page-item .page-link {
-    color: green;
+.page-item.active .page-link {
+    background-color: green;
+    color: white;
 }
 
-.page-item.active .page-link {
+.page-item.active .page-link:hover {
     background-color: green;
     color: white;
 }
