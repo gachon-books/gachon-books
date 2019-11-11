@@ -50,7 +50,11 @@ request.get({ url: bestApiUrl }, function(err, res, body) {
 router.get('/', function(req, res, next) {
   // Header, Navbar
   let htmlstream = fs.readFileSync(__dirname + '/../views/htmlhead.ejs', 'utf8');
-  htmlstream += fs.readFileSync(__dirname + '/../views/navbar.ejs', 'utf8');
+  htmlstream += fs.readFileSync(__dirname + '/../views/title.ejs', 'utf8');
+  if(true)  // 로그인한 상태(req.query.auth == 99)
+    htmlstream += fs.readFileSync(__dirname + '/../views/authNavbar.ejs', 'utf8');
+  else  // 로그인되지 않은 상태
+    htmlstream += fs.readFileSync(__dirname + '/../views/navbar.ejs', 'utf8');
   htmlstream += fs.readFileSync(__dirname + '/../views/userform.ejs', 'utf8');
 
   // 놀이시설 정보

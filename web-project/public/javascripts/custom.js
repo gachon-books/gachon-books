@@ -5,8 +5,22 @@ $(function() {
     // 처음 진입하면 카테고리 선택 안내 문구를 출력
     $('#collapse-usage').collapse('show');
 
-    // 지역 카테고리를 선택하면 usage는 안보이도록 설정
-    $('.btn-group').on('click', function() {
+    // 지역 카테고리를 선택하면 다른 지역 카테고리와 안내 문구는 안보이도록 설정
+    $('#collapseBtn1').on('click', function() {
+        $('#collapse2').collapse('hide');
+        $('#collapse3').collapse('hide');
+        $('#closeUsage').trigger('click');
+    });
+
+    $('#collapseBtn2').on('click', function() {
+        $('#collapse1').collapse('hide');
+        $('#collapse3').collapse('hide');
+        $('#closeUsage').trigger('click');
+    });
+
+    $('#collapseBtn3').on('click', function() {
+        $('#collapse1').collapse('hide');
+        $('#collapse2').collapse('hide');
         $('#closeUsage').trigger('click');
     });
 
