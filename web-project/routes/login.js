@@ -1,34 +1,34 @@
 var express = require('express');
+var User = require('../schemas/user');
 var session = require('express-session');
-var mongoclient = require('mongodb').MongoClient;
 var router = express.Router();
 
-var url = "mongodb://localhost:27017/";
+router.post('/', async function(req, res, next) {
+  let userid = req.body.loginid;
+  let userpw = req.body.loginpw;
+  console.log(`userid: ${userid}, userpw: ${userpw}`);
 
-router.post('/', function(req, res, next) {
+  try {
+    let users = await User.findOne(
+      { id: userid, password: userpw },
+      { _id: 0, id: 1, password: 1, name: 1 }
+    );
 
-  let body = req.body;
-  console.log(`id: ${body.loginid} / pw: ${body.loginpw}`);
+    if(users == '') {
+      res.send('일치하는 아이디나 비밀번호가 없습니다.');
+      // 이 부분 추후에 구현
+    }
+    else {
+      req.session.auth = 99;
+      req.session.name = users._doc.name;
+      // req.session.favorite = [];
 
-  mongoclient.connect(url, function(err, database) {
-    if (err) throw err;
-    var query = { id: body.loginid, password: body.loginpw };
-    var cursor = database.db("local").collection("users").find(query);
-    cursor.each(function(err, doc) {
-      if (err) throw err;
-      if (doc != null) {  // 로그인 성공
-        console.log(doc);
-      }
-    });
-    database.close();
-  });
-
-  // 오류!
-  if(name) {
-    res.redirect('/');
-  }
-  else
-    res.send('오류!!');
+      res.redirect('/');
+    }
+  } catch(error) {
+    console.error(err);
+    next(err);
+  };
 });
 
 module.exports = router;

@@ -1,6 +1,6 @@
 $(function() {
     // tooltip 초기화
-    $('[data-toggle="tooltip"]').tooltip()
+    $('[data-toggle="tooltip"]').tooltip();
 
     // 처음 진입하면 카테고리 선택 안내 문구를 출력
     $('#collapse-usage').collapse('show');

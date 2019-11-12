@@ -48,10 +48,12 @@ request.get({ url: bestApiUrl }, function(err, res, body) {
 });
 
 router.get('/', function(req, res, next) {
+  console.log(`req.session.auth: ${req.session.auth}`);
+
   // Header, Navbar
   let htmlstream = fs.readFileSync(__dirname + '/../views/htmlhead.ejs', 'utf8');
   htmlstream += fs.readFileSync(__dirname + '/../views/title.ejs', 'utf8');
-  if(true)  // 로그인한 상태(req.query.auth == 99)
+  if(req.session.auth == 99)  // 로그인한 상태
     htmlstream += fs.readFileSync(__dirname + '/../views/authNavbar.ejs', 'utf8');
   else  // 로그인되지 않은 상태
     htmlstream += fs.readFileSync(__dirname + '/../views/navbar.ejs', 'utf8');
@@ -69,7 +71,8 @@ router.get('/', function(req, res, next) {
 
   res.end(ejs.render(htmlstream, {
     title: '어린이 놀이시설 정보',
-    bestFacilities : bestFacilities  // 우수 어린이 놀이시설 리스트
+    bestFacilities : bestFacilities,  // 우수 어린이 놀이시설 리스트
+    name: req.session.name
   }));
   
 });

@@ -6,13 +6,15 @@ var express = require('express');
 var session = require('express-session');
 var createError = require('http-errors');
 var cookieParser = require('cookie-parser');
-var mongoclient = require('mongodb').MongoClient;
 
 var indexRouter = require('./routes/index');
 var loginRouter = require('./routes/login');
+var logoutRouter = require('./routes/logout');
 var signupRouter = require('./routes/signup');
+var connect = require('./schemas/database');
 
 var app = express();
+connect();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -20,21 +22,22 @@ app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(cookieParser());
+app.use(cookieParser('secret code'));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist'));
 app.use('/bootstrap/js', express.static(__dirname + '/node_modules/bootstrap/dist/js'));
 app.use('/bootstrap/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
 app.use(session({
-  key: 'sid',
-  secret: 'secret key',
+  secret: 'secret code',
   resave: false,
-  saveUninitialized: true
+  saveUninitialized: true,
+  cookie: { secure: false }
 }));
 
 app.use('/', indexRouter);
 app.use('/login', loginRouter);
+app.use('/logout', logoutRouter);
 app.use('/signup', signupRouter);
 
 // catch 404 and forward to error handler
