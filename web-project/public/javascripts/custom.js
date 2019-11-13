@@ -71,12 +71,43 @@ $(function() {
                 result.facilities.forEach(function(item, index) {
                     $('#listScroll').append(
                         `<div class="col-md-6 d-flex listElement">
-                            <p class="mr-auto my-auto font-weight-bold text-truncate">${item.test}</p>
-                            <button class="btn btn-sm btn-outline-success pull-right moreBtn" data-toggle="modal" data-target="#info-modal">more</button>
+                            <p class="mr-auto my-auto font-weight-bold text-truncate">${item.name}</p>
+                            <button class="btn btn-sm btn-outline-success pull-right moreBtn" index="${index}" data-toggle="modal" data-target="#info-modal">more</button>
                         </div>`
                     );
                 });
             }
+
+            $('.moreBtn').on('click', function() {
+                let index = Number($(this).attr('index'));
+                let item = result.facilities[index];
+
+                // $('#info-img').attr('src', `img/sigun_logo/${item.cityName}.jpg`);
+                $('#info-name').val(`[#${item.no}] ${item.name}`);
+                $('#info-inoutType').val(`${item.inoutType}`);
+                $('#info-buildDay').val(`${item.buildDay}`);
+                $('#info-addr').val(`${item.addr}`);
+
+                // 지도 구현(카카오맵 API)
+                setTimeout(function() {
+                    // 지도 컨테이너
+                    let container = document.getElementById('map'),
+                        options = {
+                            center: new kakao.maps.LatLng(item.lat, item.logt),
+                            draggable: false,
+                            level: 3
+                        };
+
+                    // 해당 위치에 지도 그리기
+                    let map = new kakao.maps.Map(container, options);
+
+                    // 마커 표시하기
+                    let marker = new kakao.maps.Marker({ 
+                        position: map.getCenter() 
+                    }); 
+                    marker.setMap(map);
+                }, 500);
+            });
 
             /*
                 페이지네이션 구현
@@ -134,6 +165,7 @@ $(function() {
             $('.page-link').attr('sigun_nm', sigun_nm);
             $('.page-link').attr('sigun_cd', sigun_cd);
 
+            // 페이지 글씨 색상 CSS 변경
             $('.page-link').css('color', 'green');
             $('.page-item.active .page-link').css('color', 'white');
         });

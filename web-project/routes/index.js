@@ -48,7 +48,7 @@ request.get({ url: bestApiUrl }, function(err, res, body) {
 });
 
 router.get('/', function(req, res, next) {
-  console.log(`req.session.auth: ${req.session.auth}`);
+  // console.log(`req.session.auth: ${req.session.auth}`);
 
   // Header, Navbar
   let htmlstream = fs.readFileSync(__dirname + '/../views/htmlhead.ejs', 'utf8');
@@ -74,7 +74,6 @@ router.get('/', function(req, res, next) {
     bestFacilities : bestFacilities,  // 우수 어린이 놀이시설 리스트
     name: req.session.name
   }));
-  
 });
 
 router.post('/', function(req, res) {
@@ -103,21 +102,31 @@ router.post('/', function(req, res) {
     facilities = []; // 초기화
     
     // 도로명 주소 혹은 지번 주소 가져오기
-    // { ... }
+    let getAddr = function(i) {
+      try {
+        return arr.prevObject[i].children[21].children[0].data;
+      } catch(error) {
+        try {
+          return arr.prevObject[i].children[19].children[0].data;
+        } catch(error) {
+          return '등록된 주소가 없음';
+        }
+      }
+    };
     
     for(let i = 0; i < arr.prevObject.length; i++) {
       let facility = {
-        'test' : arr.prevObject[i].children[9].children[0].data
-        // 'cityName' : arr.prevObject[i].children[3].children[0].data,   // 시군 이름
-        // 'cityCode' : arr.prevObject[i].children[5].children[0].data,   // 시군 코드
-        // 'name'     : arr.prevObject[i].children[7].children[0].data,   // 놀이시설 이름
-        // 'tel'      : arr.prevObject[i].children[13].children[0].data,  // 전화번호
-        // 'addr'     : getAddr(i),                                       // 주소
-        // 'logt'     : arr.prevObject[i].children[21].children[0].data,  // 경도
-        // 'lat'      : arr.prevObject[i].children[23].children[0].data   // 위도
+        'cityName'  : arr.prevObject[i].children[3].children[0].data,    // 시군 이름
+        'no'        : arr.prevObject[i].children[7].children[0].data,    // 놀이시설 코드
+        'name'      : arr.prevObject[i].children[9].children[0].data,    // 놀이시설 이름
+        'buildDay'  : arr.prevObject[i].children[11].children[0].data,   // 건축 날짜
+        'inoutType' : arr.prevObject[i].children[17].children[0].data,   // 실내외 구분
+        'addr'      : getAddr(i),                                        // 도로명 주소 혹은 지번 주소
+        'logt'      : arr.prevObject[i].children[25].children[0].data,   // 경도
+        'lat'       : arr.prevObject[i].children[27].children[0].data,   // 위도
       };
       facilities.push(facility);
-      // console.log(`facility: ${facility.test}`);
+      // console.dir(facility);
     }
   });
 

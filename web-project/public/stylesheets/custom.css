@@ -30,6 +30,11 @@
     z-index: 1032;
 }
 
+#info-modal #infoModalBody {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
 /*스마트폰 화면일때와 아이패드 화면일때 메인 헤더 글씨 크기 조정*/
 @media (max-width: 508px){
     header.masthead .intro-text .intro-heading {

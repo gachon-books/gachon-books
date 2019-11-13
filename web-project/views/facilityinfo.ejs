@@ -21,20 +21,55 @@
 
   <!-- 해당 놀이시설의 정보 -->
   <div class="modal fade" id="info-modal" tabindex="-1" role="dialog" aria-labelledby="infoModalTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-scrollable" role="document">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="infoModalTitle">Modal title</h5>
+          <h5 class="modal-title" id="infoModalTitle"><i class="far fa-star"></i> 자세한 정보</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body" id="infoModalBody">
-          ...
+          <form>
+
+            <div class="row">
+              <div class="col-sm-12" id="map" style="height:400px;"></div>
+            </div>
+
+            <hr>
+
+            <div class="form-group row">
+              <label for="info-name" class="col-sm-2 col-form-label font-weight-bold text-center text-nowrap border-right border-left border-warning rounded-lg">이&nbsp;&nbsp;&nbsp;름</label>
+              <div class="col-sm-8">
+                <input type="text" readonly class="form-control-plaintext" id="info-name" value="">
+              </div>
+            </div>
+            
+            <div class="form-group row">
+              <label for="info-inoutType" class="col-sm-2 col-form-label font-weight-bold text-center text-nowrap border-right border-left border-warning rounded-lg">실내/외</label>
+              <div class="col-sm-8">
+                <input type="text" readonly class="form-control-plaintext" id="info-inoutType" value="">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="info-buildDay" class="col-sm-2 col-form-label font-weight-bold text-center text-nowrap border-right border-left border-warning rounded-lg">설립일</label>
+              <div class="col-sm-8">
+                <input type="text" readonly class="form-control-plaintext" id="info-buildDay" value="">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="info-addr" class="col-sm-2 col-form-label font-weight-bold text-center text-nowrap border-right border-left border-warning rounded-lg">주&nbsp;&nbsp;&nbsp;소</label>
+              <div class="col-sm-8">
+                <input type="text" readonly class="form-control-plaintext" id="info-addr" value="">
+              </div>
+            </div>
+          </form>
+
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
         </div>
       </div>
     </div>
