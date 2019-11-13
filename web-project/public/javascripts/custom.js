@@ -2,6 +2,21 @@ $(function() {
     // tooltip 초기화
     $('[data-toggle="tooltip"]').tooltip();
 
+    // 로그인 창이 닫힐 때 input에 입력된 내용을 삭제
+    $('#login-modal').on('hidden.bs.modal', function () {
+        $('#loginid').val('');
+        $('#loginpw').val('');
+    });
+
+    // 회원가입 창이 닫힐 때 input에 입력된 내용을 삭제
+    $('#signup-modal').on('hidden.bs.modal', function () {
+        $('#signupid').val('');
+        $('#pw1').val('');
+        $('#pw2').val('');
+        $('#signupname').val('');
+        $('#signuplocation').val('');
+    });
+
     // 처음 진입하면 카테고리 선택 안내 문구를 출력
     $('#collapse-usage').collapse('show');
 

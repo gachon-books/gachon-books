@@ -1,3 +1,5 @@
+const fs = require('fs');
+const ejs = require('ejs');
 var express = require('express');
 var User = require('../schemas/user');
 var session = require('express-session');
@@ -14,9 +16,16 @@ router.post('/', async function(req, res, next) {
       { _id: 0, id: 1, password: 1, name: 1 }
     );
 
-    if(users == '') {
-      res.send('일치하는 아이디나 비밀번호가 없습니다.');
-      // 이 부분 추후에 구현
+    if(users === null) {
+      let htmlstream = fs.readFileSync(__dirname + '/../views/error.ejs','utf8');
+
+      res.end(ejs.render(htmlstream, {
+        error: {
+          'status': 562,
+          'stack': '아이디 혹은 비밀번호가 일치하지 않습니다.'
+        },
+        message: '아이디 혹은 비밀번호가 일치하지 않습니다.'
+      }));
     }
     else {
       req.session.auth = 99;
@@ -26,8 +35,8 @@ router.post('/', async function(req, res, next) {
       res.redirect('/');
     }
   } catch(error) {
-    console.error(err);
-    next(err);
+    console.error(error);
+    next(error);
   };
 });
 
