@@ -72,7 +72,9 @@ router.get('/', function(req, res, next) {
   res.end(ejs.render(htmlstream, {
     title: '어린이 놀이시설 정보',
     bestFacilities : bestFacilities,  // 우수 어린이 놀이시설 리스트
-    name: req.session.name
+    uid: req.session.uid,
+    name: req.session.name,
+    location: req.session.address
   }));
 });
 

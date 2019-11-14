@@ -8,12 +8,12 @@ var router = express.Router();
 router.post('/', async function(req, res, next) {
   let userid = req.body.loginid;
   let userpw = req.body.loginpw;
-  console.log(`userid: ${userid}, userpw: ${userpw}`);
+  // console.log(`userid: ${userid}, userpw: ${userpw}`);
 
   try {
     let users = await User.findOne(
       { id: userid, password: userpw },
-      { _id: 0, id: 1, password: 1, name: 1 }
+      { _id: 0, id: 1, name: 1, address: 1 }
     );
 
     if(users === null) {
@@ -29,7 +29,9 @@ router.post('/', async function(req, res, next) {
     }
     else {
       req.session.auth = 99;
+      req.session.uid = users._doc.id;
       req.session.name = users._doc.name;
+      req.session.address = users._doc.address;
       // req.session.favorite = [];
 
       res.redirect('/');

@@ -11,10 +11,18 @@ $(function() {
     // 회원가입 창이 닫힐 때 input에 입력된 내용을 삭제
     $('#signup-modal').on('hidden.bs.modal', function () {
         $('#signupid').val('');
-        $('#pw1').val('');
-        $('#pw2').val('');
+        $('#signuppw').val('');
+        $('#signuppw2').val('');
         $('#signupname').val('');
         $('#signuplocation').val('');
+    });
+
+    // 회원정보수정 창이 닫힐 때 input에 입력된 내용을 삭제
+    $('#update-modal').on('hidden.bs.modal', function () {
+        $('#updatepw').val('');
+        $('#updatepw2').val('');
+        $('#updatename').val('');
+        $('#updatelocation').val('');
     });
 
     // 처음 진입하면 카테고리 선택 안내 문구를 출력
@@ -193,7 +201,7 @@ $(function() {
 
         getList(sigun_nm, sigun_cd, '1');
     });
-
+    
     // 페이지를 클릭했을 때 getList() 호출하여 ajax 통신
     $('#pagination').on('click', 'li', function() {
         let sigun_nm = $(this).find('a').attr('sigun_nm');
