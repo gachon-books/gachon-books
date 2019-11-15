@@ -29,5 +29,4 @@ module.exports = () => {
     });
 
     require('./database');
-    // require('./sigun');
 };

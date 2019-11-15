@@ -14,16 +14,14 @@
             <div class="col-md-4">
               <span class="fa-stack fa-4x">
                 <i class="fas fa-circle fa-stack-2x text-primary"></i>
-                <i class="fas fa-lock fa-stack-1x fa-inverse"></i>
+                <i class="<%= icons[index] %> fa-stack-1x fa-inverse"></i>
               </span>
               <h4 class="service-heading"><%= item.name %></h4>
               <p class="text-muted">
                   지역 : <%= item.cityName %><br>
                   전화번호 : <%= item.tel %><br>
                   주소 : <%= item.addr %><br>
-                  위도 : <%= Number(item.lat).toFixed(2) %> /
-                  경도 : <%= Number(item.logt).toFixed(2) %>
-                </p>
+              </p>
             </div>
             <% }); %>
 
