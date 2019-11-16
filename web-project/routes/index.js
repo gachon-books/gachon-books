@@ -48,7 +48,7 @@ request.get({ url: bestApiUrl }, function(err, res, body) {
 });
 
 router.get('/', function(req, res, next) {
-  // console.log(`req.session.auth: ${req.session.auth}`);
+  console.log(`req.session.auth: ${req.session.auth}`);
 
   // Header, Navbar
   let htmlstream = fs.readFileSync(__dirname + '/../views/htmlhead.ejs', 'utf8');
@@ -72,7 +72,7 @@ router.get('/', function(req, res, next) {
   res.end(ejs.render(htmlstream, {
     title: '어린이 놀이시설 정보',
     bestFacilities : bestFacilities,  // 우수 어린이 놀이시설 리스트
-    icons : ["far fa-laugh-wink", "fas fa-child", "fas fa-gifts"], // 우수 놀이시설 리스트 아이콘
+    icons : ["far fa-laugh-wink", "fas fa-child", "fas fa-gifts", "fab fa-angellist", "fas fa-cocktail", "fas fa-candy-cane"], // 우수 놀이시설 리스트 아이콘
     uid: req.session.uid,
     name: req.session.name,
     location: req.session.address
