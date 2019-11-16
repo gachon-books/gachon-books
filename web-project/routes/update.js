@@ -23,10 +23,10 @@ router.post('/', async function(req, res, next) {
     req.session.uid = userid;
     req.session.name = username;
     req.session.address = userlocation;
-    // req.session.favorite = [];
 
     res.redirect('/');
-  } catch(error) {
+  }
+  catch(error) {
     console.error(error);
     next(error);
   };

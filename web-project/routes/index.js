@@ -57,7 +57,7 @@ router.get('/', function(req, res, next) {
     htmlstream += fs.readFileSync(__dirname + '/../views/authNavbar.ejs', 'utf8');
   else  // 로그인되지 않은 상태
     htmlstream += fs.readFileSync(__dirname + '/../views/navbar.ejs', 'utf8');
-  htmlstream += fs.readFileSync(__dirname + '/../views/userform.ejs', 'utf8');
+  htmlstream += fs.readFileSync(__dirname + '/../views/usermodals.ejs', 'utf8');
 
   // 놀이시설 정보
   htmlstream += fs.readFileSync(__dirname + '/../views/bestfacility.ejs', 'utf8');
@@ -70,12 +70,13 @@ router.get('/', function(req, res, next) {
   res.writeHead(200, {'Content-Type':'text/html; charset=utf8'});
 
   res.end(ejs.render(htmlstream, {
-    title: '어린이 놀이시설 정보',
+    title: '경기도 어린이 놀이시설 정보',
     bestFacilities : bestFacilities,  // 우수 어린이 놀이시설 리스트
     icons : ["far fa-laugh-wink", "fas fa-child", "fas fa-gifts", "fab fa-angellist", "fas fa-cocktail", "fas fa-candy-cane"], // 우수 놀이시설 리스트 아이콘
     uid: req.session.uid,
     name: req.session.name,
-    location: req.session.address
+    location: req.session.address,
+    favorite: req.session.favorite
   }));
 });
 
@@ -108,10 +109,12 @@ router.post('/', function(req, res) {
     let getAddr = function(i) {
       try {
         return arr.prevObject[i].children[21].children[0].data;
-      } catch(error) {
+      }
+      catch(error) {
         try {
           return arr.prevObject[i].children[19].children[0].data;
-        } catch(error) {
+        }
+        catch(error) {
           return '등록된 주소가 없음';
         }
       }

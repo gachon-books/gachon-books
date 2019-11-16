@@ -24,7 +24,7 @@
     <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="infoModalTitle"><i class="far fa-star"></i> 자세한 정보</h5>
+          <h5 class="modal-title" id="infoModalTitle">자세한 정보</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -69,6 +69,14 @@
 
         </div>
         <div class="modal-footer">
+          <form action="/favorite/add" method="post">
+            <input type="hidden" name="favUid" value="<%= uid %>">
+            <input type="hidden" name="favNo" id="favNo" value="">
+            <input type="hidden" name="favCityName" id="favCityName" value="">
+            <input type="hidden" name="favName" id="favName" value="">
+            <input type="hidden" name="favAddr" id="favAddr" value="">
+            <button type="submit" class="btn btn-warning" id="favoriteBtn">즐겨찾기 등록</button>
+          </form>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
         </div>
       </div>

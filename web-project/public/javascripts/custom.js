@@ -17,14 +17,6 @@ $(function() {
         $('#signuplocation').val('');
     });
 
-    // 회원정보수정 창이 닫힐 때 input에 입력된 내용을 삭제
-    $('#update-modal').on('hidden.bs.modal', function () {
-        $('#updatepw').val('');
-        $('#updatepw2').val('');
-        $('#updatename').val('');
-        $('#updatelocation').val('');
-    });
-
     // 처음 진입하면 카테고리 선택 안내 문구를 출력
     $('#collapse-usage').collapse('show');
 
@@ -105,7 +97,7 @@ $(function() {
                 let index = Number($(this).attr('index'));
                 let item = result.facilities[index];
 
-                // $('#info-img').attr('src', `img/sigun_logo/${item.cityName}.jpg`);
+                // 해당 놀이시설의 상세정보를 표시
                 $('#info-name').val(`[#${item.no}] ${item.name}`);
                 $('#info-inoutType').val(`${item.inoutType}`);
                 $('#info-buildDay').val(`${item.buildDay}`);
@@ -130,6 +122,12 @@ $(function() {
                     }); 
                     marker.setMap(map);
                 }, 500);
+
+                // 즐겨찾기 등록 시 정보 전달할 수 있도록 속성 부여
+                $('#favNo').val(item.no);
+                $('#favCityName').val(item.cityName);
+                $('#favName').val(item.name);
+                $('#favAddr').val(item.addr);
             });
 
             /*

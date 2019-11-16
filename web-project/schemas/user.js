@@ -18,7 +18,13 @@ const userSchema = new Schema({
     address: {
         type: String,
         required: true
-    }
+    },
+    favorite: [{
+        no: String,
+        cityName: String,
+        name: String,
+        addr: String
+    }]
 });
 
 module.exports = mongoose.model('User', userSchema);

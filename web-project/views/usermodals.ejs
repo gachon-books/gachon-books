@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<script language="javascript">
+    function validate_signup() {
+        let pw1 = document.getElementById("signuppw").value;
+        let pw2 = document.getElementById("signuppw2").value;
+
+        if(pw1 != pw2) {
+            alert('암호가 서로 다릅니다. 다시 입력해주세요!');
+            return false;
+        }
+
+        return true;
+    }
+
+    function validate_update() {
+        let pw1 = document.getElementById("updatepw").value;
+        let pw2 = document.getElementById("updatepw2").value;
+
+        if(pw1 != pw2) {
+            alert('암호가 서로 다릅니다. 다시 입력해주세요!');
+            return false;
+        }
+
+        return true;
+    }
+</script>
+
+<!-- 로그인 폼 모달 -->
+<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="login-modal-title" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="login-modal-title">로그인</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- 로그인 폼 -->
+                <form name="loginform" method="post" action="/login">
+                    <div class="form-group">
+                        <label for="loginid">아이디</label>
+                        <input type="text" class="form-control" name="loginid" id="loginid" placeholder="아이디를 입력하세요" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginpw">비밀번호</label>
+                        <input type="password" class="form-control" name="loginpw" id="loginpw" placeholder="비밀번호를 입력하세요" required>
+                    </div>
+                    <hr>
+                    <div class="text-right">
+                        <button type="submit" class="btn btn-primary">로그인</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" data-toggle="modal" data-target="#signup-modal">회원가입</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 회원가입 폼 모달 -->
+<div class="modal fade" id="signup-modal" tabindex="-1" role="dialog" aria-labelledby="signup-modal-title" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="signup-modal-title">회원가입</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- 회원가입 폼 -->
+                <form name="signupform" onsubmit="return validate_signup()" method="post" action="/signup">
+                    <div class="form-group">
+                        <label for="signupid">아이디</label>
+                        <input type="text" class="form-control" name="signupid" id="signupid" placeholder="아이디를 입력하세요" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signuppw">비밀번호</label>
+                        <input type="password" class="form-control" name="signuppw" id="signuppw" placeholder="비밀번호를 입력하세요" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signuppw2">비밀번호 확인</label>
+                        <input type="password" class="form-control" name="signuppw2" id="signuppw2" placeholder="비밀번호를 한번 더 입력하세요" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signupname">이름</label>
+                        <input type="text" class="form-control" name="signupname" id="signupname" placeholder="이름을 입력하세요" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signuplocation">사는 곳</label>
+                        <input type="text" class="form-control" name="signuplocation" id="signuplocation" placeholder="사는 곳을 입력하세요  ex) 수원시" required>
+                    </div>
+                    <hr>
+                    <div class="text-right">
+                        <button type="submit" class="btn btn-primary">회원가입</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 회원정보수정 폼 모달 -->
+<div class="modal fade" id="update-modal" tabindex="-1" role="dialog" aria-labelledby="update-modal-title" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="update-modal-title">회원정보수정</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- 회원정보수정 폼 -->
+                <form name="updateform" onsubmit="return validate_update()" method="post" action="/update">
+                    <div class="form-group">
+                        <label for="updateid">아이디</label>
+                        <input type="text" class="form-control" name="updateid" id="updateid" value="<%= uid %>" required readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="updatepw">비밀번호</label>
+                        <input type="password" class="form-control" name="updatepw" id="updatepw" placeholder="비밀번호를 입력하세요" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="updatepw2">비밀번호 확인</label>
+                        <input type="password" class="form-control" name="updatepw2" id="updatepw2" placeholder="비밀번호를 한번 더 입력하세요" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="updatename">이름</label>
+                        <input type="text" class="form-control" name="updatename" id="updatename" value="<%= name %>" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="updatelocation">사는 곳</label>
+                        <input type="text" class="form-control" name="updatelocation" id="updatelocation" value="<%= location %>" required>
+                    </div>
+                    <hr>
+                    <div class="text-right">
+                        <button type="submit" class="btn btn-primary">회원정보수정</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 즐겨찾기 모달 -->
+<div class="modal fade" id="favorite-modal" tabindex="-1" role="dialog" aria-labelledby="favorite-modal-title" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="favorite-modal-title">즐겨찾기</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="favorite-modal-body">
+                <% if(favorite) { %>
+                    <% if(favorite.length !== 0) { %>
+                        <table class="table table-striped text-center text-truncate">
+                            <thead>
+                                <tr>
+                                    <th scope="col">번호</th>
+                                    <th scope="col">시/군</th>
+                                    <th scope="col">이름</th>
+                                    <th scope="col">삭제</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% favorite.forEach(function (item, index) { %>
+                                    <tr>
+                                        <th scope="row"><%= index+1 %></th>
+                                        <td><%= item.cityName %></td>
+                                        <td class="text-left"><%= item.name %></td>
+                                        <td>
+                                            <form action="/favorite/delete" method="post">
+                                                <input type="hidden" name="favUid" value="<%= uid %>">
+                                                <input type="hidden" name="favNo" value="<%= item.no %>">
+                                                <a onclick="this.parentNode.submit()"><i class="fas fa-trash-alt"></i></a>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                <% }); %>
+                            </tbody>
+                        </table>
+                    <% } else { %>
+                        <p>등록된 즐겨찾기가 없습니다!</p>
+                    <% } %>
+                <% } %>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+            </div>
+        </div>
+    </div>
+</div>

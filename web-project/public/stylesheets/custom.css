@@ -1,3 +1,7 @@
+.btn-primary {
+    color: black;
+}
+
 #portfolio .btn-group {
     margin-bottom: 25px;
 }
@@ -33,6 +37,10 @@
 #info-modal #infoModalBody {
     margin-left: 20px;
     margin-right: 20px;
+}
+
+#favorite-modal-body a {
+    color: orange;
 }
 
 /*스마트폰 화면일때와 아이패드 화면일때 메인 헤더 글씨 크기 조정*/

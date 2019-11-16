@@ -7,6 +7,7 @@ module.exports = () => {
         }
         mongoose.connect('mongodb://localhost:27017/local', {
             dbName: 'local',
+            useCreateIndex: true,
             useNewUrlParser: true,
             useUnifiedTopology: true
         }, (error) => {

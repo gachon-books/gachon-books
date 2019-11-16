@@ -9,7 +9,7 @@ router.post('/', async function(req, res, next) {
   let userpw = req.body.signuppw;
   let username = req.body.signupname;
   let userlocation = req.body.signuplocation;
-  console.log(`userid: ${userid}, userpw: ${userpw}, username: ${username}, userlocation: ${userlocation}`);
+  // console.log(`userid: ${userid}, userpw: ${userpw}, username: ${username}, userlocation: ${userlocation}`);
 
   try {
     let users = await User.findOne(
@@ -41,7 +41,8 @@ router.post('/', async function(req, res, next) {
         message: '이미 존재하는 아이디입니다.'
       }));
     }
-  } catch(error) {
+  }
+  catch(error) {
     console.error(error);
     next(error);
   };

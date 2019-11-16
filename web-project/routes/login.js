@@ -13,7 +13,7 @@ router.post('/', async function(req, res, next) {
   try {
     let users = await User.findOne(
       { id: userid, password: userpw },
-      { _id: 0, id: 1, name: 1, address: 1 }
+      { _id: 0, id: 1, name: 1, address: 1, favorite: 1 }
     );
 
     if(users === null) {
@@ -32,11 +32,12 @@ router.post('/', async function(req, res, next) {
       req.session.uid = users._doc.id;
       req.session.name = users._doc.name;
       req.session.address = users._doc.address;
-      // req.session.favorite = [];
+      req.session.favorite = users._doc.favorite;
 
       res.redirect('/');
     }
-  } catch(error) {
+  }
+  catch(error) {
     console.error(error);
     next(error);
   };
