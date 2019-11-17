@@ -216,4 +216,24 @@ $(function() {
             getList(sigun_nm, sigun_cd, page);
         }
     });
+
+    // Contact Us
+    $('#contactBtn').on('click', function() {
+        let name = $('#contactName').val();
+        let email = $('#contactEmail').val();
+        let phone = $('#contactPhone').val();
+        let message = $('#contactMessage').val();
+
+        let subject = `경기도 어린이 놀이시설에서 보낸 메일입니다.`;
+        let context =
+            `"좋은 의견 감사합니다." / `
+            + `이름: ${name} / `
+            + `이메일: ${email} / `
+            + `핸드폰: ${phone} / `
+            + `내용: ${message}`;
+
+        let mailContext = `mailto:tjrghks115@gmail.com?subject=${subject}&body=${context}`;
+        window.open(mailContext, '_blank');
+    });
+
 });
