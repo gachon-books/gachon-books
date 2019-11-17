@@ -25,12 +25,10 @@
                     <a class="nav-link js-scroll-trigger" href="" data-toggle="modal" data-target="#favorite-modal">Favorite</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="" data-toggle="modal" data-target="#update-modal"><%= name %></a>
+                    <a class="nav-link js-scroll-trigger" href="" data-toggle="modal" data-target="#update-modal"><%= user.name %></a>
                 </li>
                 <li class="nav-item">
-                    <form method="post" action="/logout">
-                        <a class="nav-link js-scroll-trigger" href="" onclick="this.parentNode.submit()">Logout</a>
-                    </form>
+                    <a class="nav-link js-scroll-trigger" href="/logout">Logout</a>
                 </li>
             </ul>
         </div>

@@ -115,7 +115,7 @@
                 <form name="updateform" onsubmit="return validate_update()" method="post" action="/update">
                     <div class="form-group">
                         <label for="updateid">아이디</label>
-                        <input type="text" class="form-control" name="updateid" id="updateid" value="<%= uid %>" required readonly>
+                        <input type="text" class="form-control" name="updateid" id="updateid" value="<%= user.id %>" required readonly>
                     </div>
                     <div class="form-group">
                         <label for="updatepw">비밀번호</label>
@@ -127,11 +127,11 @@
                     </div>
                     <div class="form-group">
                         <label for="updatename">이름</label>
-                        <input type="text" class="form-control" name="updatename" id="updatename" value="<%= name %>" required>
+                        <input type="text" class="form-control" name="updatename" id="updatename" value="<%= user.name %>" required>
                     </div>
                     <div class="form-group">
                         <label for="updatelocation">사는 곳</label>
-                        <input type="text" class="form-control" name="updatelocation" id="updatelocation" value="<%= location %>" required>
+                        <input type="text" class="form-control" name="updatelocation" id="updatelocation" value="<%= user.address %>" required>
                     </div>
                     <hr>
                     <div class="text-right">
@@ -154,8 +154,8 @@
                 </button>
             </div>
             <div class="modal-body" id="favorite-modal-body">
-                <% if(favorite) { %>
-                    <% if(favorite.length !== 0) { %>
+                <% if(user.favorite) { %>
+                    <% if(user.favorite.length !== 0) { %>
                         <table class="table table-striped text-center text-truncate">
                             <thead>
                                 <tr>
@@ -166,14 +166,14 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <% favorite.forEach(function (item, index) { %>
+                                <% user.favorite.forEach(function (item, index) { %>
                                     <tr>
                                         <th scope="row"><%= index+1 %></th>
                                         <td><%= item.cityName %></td>
                                         <td class="text-left"><%= item.name %></td>
                                         <td>
                                             <form action="/favorite/delete" method="post">
-                                                <input type="hidden" name="favUid" value="<%= uid %>">
+                                                <input type="hidden" name="favUid" value="<%= user.id %>">
                                                 <input type="hidden" name="favNo" value="<%= item.no %>">
                                                 <a onclick="this.parentNode.submit()"><i class="fas fa-trash-alt"></i></a>
                                             </form>

@@ -1,22 +1,23 @@
-var fs = require('fs');
-var ejs = require('ejs');
-var path = require('path');
-var logger = require('morgan');
-var express = require('express');
-var session = require('express-session');
-var createError = require('http-errors');
-var cookieParser = require('cookie-parser');
+const path = require('path');
+const logger = require('morgan');
+const express = require('express');
+const passport = require('passport');
+const session = require('express-session');
+const createError = require('http-errors');
+const cookieParser = require('cookie-parser');
 
-var indexRouter = require('./routes/index');
-var loginRouter = require('./routes/login');
-var logoutRouter = require('./routes/logout');
-var signupRouter = require('./routes/signup');
-var updateRouter = require('./routes/update');
-var favoriteRouter = require('./routes/favorite');
-var connect = require('./schemas/database');
+const indexRouter = require('./routes/index');
+const loginRouter = require('./routes/login');
+const logoutRouter = require('./routes/logout');
+const signupRouter = require('./routes/signup');
+const updateRouter = require('./routes/update');
+const favoriteRouter = require('./routes/favorite');
+const connect = require('./schemas/database');
+const passportConfig = require('./passport');
 
-var app = express();
+const app = express();
 connect();
+passportConfig(passport);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -36,6 +37,8 @@ app.use(session({
   saveUninitialized: true,
   cookie: { secure: false }
 }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use('/', indexRouter);
 app.use('/login', loginRouter);

@@ -3,10 +3,12 @@ const ejs = require('ejs');
 const express = require('express');
 const request = require('request');
 const cheerio = require('cheerio');
+const passport = require('passport');
 const session = require('express-session');
+const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
 const router = express.Router();
 
-let apiKey = 'apiKey'; // 경기데이터드림에서 발급된 apiKey
+const apiKey = 'apiKey'; // 경기데이터드림에서 발급된 apiKey
 
 // 우수 놀이시설 정보
 let bestFacilities = [];
@@ -48,12 +50,12 @@ request.get({ url: bestApiUrl }, function(err, res, body) {
 });
 
 router.get('/', function(req, res, next) {
-  console.log(`req.session.auth: ${req.session.auth}`);
+  let currentUser = req.session.user;
 
   // Header, Navbar
   let htmlstream = fs.readFileSync(__dirname + '/../views/htmlhead.ejs', 'utf8');
   htmlstream += fs.readFileSync(__dirname + '/../views/title.ejs', 'utf8');
-  if(req.session.auth == 99)  // 로그인한 상태
+  if(currentUser !== undefined)  // 로그인한 상태
     htmlstream += fs.readFileSync(__dirname + '/../views/authNavbar.ejs', 'utf8');
   else  // 로그인되지 않은 상태
     htmlstream += fs.readFileSync(__dirname + '/../views/navbar.ejs', 'utf8');
@@ -69,15 +71,22 @@ router.get('/', function(req, res, next) {
   htmlstream += fs.readFileSync(__dirname + '/../views/footer.ejs', 'utf8');
   res.writeHead(200, {'Content-Type':'text/html; charset=utf8'});
 
-  res.end(ejs.render(htmlstream, {
-    title: '경기도 어린이 놀이시설 정보',
-    bestFacilities : bestFacilities,  // 우수 어린이 놀이시설 리스트
-    icons : ["far fa-laugh-wink", "fas fa-child", "fas fa-gifts", "fab fa-angellist", "fas fa-cocktail", "fas fa-candy-cane"], // 우수 놀이시설 리스트 아이콘
-    uid: req.session.uid,
-    name: req.session.name,
-    location: req.session.address,
-    favorite: req.session.favorite
-  }));
+  if(currentUser !== undefined) {
+    res.end(ejs.render(htmlstream, {
+      title: '경기도 어린이 놀이시설 정보',
+      bestFacilities : bestFacilities,  // 우수 어린이 놀이시설 리스트
+      icons : ["far fa-laugh-wink", "fas fa-child", "fas fa-gifts", "fab fa-angellist", "fas fa-cocktail", "fas fa-candy-cane"], // 우수 놀이시설 리스트 아이콘
+      user: currentUser
+    }));
+  }
+  else {
+    res.end(ejs.render(htmlstream, {
+      title: '경기도 어린이 놀이시설 정보',
+      bestFacilities : bestFacilities,  // 우수 어린이 놀이시설 리스트
+      icons : ["far fa-laugh-wink", "fas fa-child", "fas fa-gifts", "fab fa-angellist", "fas fa-cocktail", "fas fa-candy-cane"], // 우수 놀이시설 리스트 아이콘
+      user: { _id: 'undefined', id: 'undefined', password: 'undefined', name: 'undefined', address: 'undefined' }
+    }));
+  }
 });
 
 router.post('/', function(req, res) {

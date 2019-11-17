@@ -1,8 +1,13 @@
-var express = require('express');
-var session = require('express-session');
-var router = express.Router();
+const bcrypt = require('bcrypt');
+const express = require('express');
+const passport = require('passport');
+const User = require('../schemas/user');
+const session = require('express-session');
+const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
+const router = express.Router();
 
-router.post('/', function(req, res, next) {
+router.get('/', isLoggedIn, function(req, res, next) {
+  req.logout();
   req.session.destroy();
   res.redirect('/');
 });
