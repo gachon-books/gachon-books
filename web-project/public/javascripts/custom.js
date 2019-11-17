@@ -97,7 +97,7 @@ $(function() {
             // 로딩 아이콘 숨김
             $('#loading').hide();
 
-            // 등록된 놀이시설이 없을 경우 대체 텍스트 출력(연천군이 해당) 
+            // 등록된 놀이시설이 없을 경우 대체 텍스트 출력(양평군이 해당) 
             if(result.facilities.length == 0)
                 $('#listScroll').text(`${sigun_nm}에 등록된 어린이 놀이시설이 없습니다.`);
             else {
