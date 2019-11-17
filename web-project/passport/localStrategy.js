@@ -2,6 +2,9 @@ const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcrypt');
 const User = require('../schemas/user');
 
+/*
+    passport 모듈 로컬 전략
+*/
 module.exports = (passport) => {
     passport.use(new LocalStrategy({
         usernameField: 'loginid',

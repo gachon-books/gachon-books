@@ -16,10 +16,10 @@ const connect = require('./schemas/database');
 const passportConfig = require('./passport');
 
 const app = express();
-connect();
-passportConfig(passport);
+connect();                 // mongodb 연결
+passportConfig(passport);  // passport 설정
 
-// view engine setup
+// ejs 템플릿 엔진 사용
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
@@ -37,9 +37,12 @@ app.use(session({
   saveUninitialized: true,
   cookie: { secure: false }
 }));
+
+// passport 설정
 app.use(passport.initialize());
 app.use(passport.session());
 
+// routes 연결
 app.use('/', indexRouter);
 app.use('/login', loginRouter);
 app.use('/logout', logoutRouter);
@@ -47,18 +50,16 @@ app.use('/signup', signupRouter);
 app.use('/update', updateRouter);
 app.use('/favorite', favoriteRouter);
 
-// catch 404 and forward to error handler
+// 404 에러 핸들러
 app.use(function(req, res, next) {
   next(createError(404));
 });
 
-// error handler
+// 에러 핸들러
 app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
   res.status(err.status || 500);
   res.render('error');
 });

@@ -1,6 +1,9 @@
 const local = require('./localStrategy');
 const User = require('../schemas/user');
 
+/*
+    passport 모듈 구현
+*/
 module.exports = (passport) => {
     passport.serializeUser((user, done) => {
         done(null, user.id);

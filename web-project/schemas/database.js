@@ -1,5 +1,9 @@
 const mongoose = require('mongoose');
 
+/*
+  [mongoose 연결]
+  database 이름은 local, 사용하는 컬렉션은 user입니다.
+*/
 module.exports = () => {
     const connect = () => {
         if(process.env.NODE_ENV !== 'production') {
