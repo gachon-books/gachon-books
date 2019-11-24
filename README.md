@@ -8,7 +8,7 @@
 
 ## 🐪 Developers
 
-[유석환](https://github.com/youseokhwan), [강성호](https://github.com/KANGSUNGHO)
+- [유석환](https://github.com/youseokhwan), [강성호](https://github.com/KANGSUNGHO)
 
 ## 🐔 Languages & Frameworks
 
@@ -29,7 +29,24 @@
 
 ## 🐍 Usage
 
-- 사용법
+1. 다운로드
+~~~
+$ git clone https://github.com/gachon-mobile-web-project/GyeonggiPlaygrounds.git
+~~~
+
+2. 경기데이터드림에서 인증키 발급 후 코드 수정
+~~~
+// rotues/index.js
+const apiKey = 'PUT YOUR API KEY HERE';
+~~~
+
+3. 서버 실행
+~~~
+$ cd web-project
+$ npm start
+~~~
+
+4. Google Chrome 실행 후 http://<span></span>localhost:3000으로 접속
 
 ## 🦢 Copyright
 
