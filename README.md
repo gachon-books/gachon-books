@@ -4,7 +4,14 @@
 
 ## 🐿 Contents
 
-- 각종 스크린샷 및 설명
+- 전체 구성
+<img src="./temp/Screenshots/main.gif" width="500" height="285" alt="main.gif">
+
+- 지역 놀이시설 검색
+<img src="./temp/Screenshots/search.gif" width="500" height="285" alt="search.gif">
+
+- 로그인 기능
+<img src="./temp/Screenshots/login.gif" width="500" height="285" alt="login.gif">
 
 ## 🐪 Developers
 
